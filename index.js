@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { AppRegistry } from "react-native"
+import App from "./App.js"
 
-AppRegistry.registerComponent('P2PRN', () => App);
+AppRegistry.registerComponent("P2PRN", () => App)

@@ -1,0 +1,3 @@
+rootProject.name = 'P2PRN'
+
+include ':app'

@@ -12,7 +12,7 @@ export const Navigator = StackNavigator(
     }
   },
   {
-    initialRouteName: "WelcomePage",
+    initialRouteName: "HomePage",
     navigationOptions: {
       header: null 
     }

@@ -69,8 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingTop: 10,
-    paddingRight: 10,
-    paddingLeft: 10
+    paddingHorizontal: 10
   },
   fold: {
     width: 21.5,

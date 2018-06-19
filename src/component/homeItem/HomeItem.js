@@ -1,6 +1,9 @@
 import React, { PureComponent } from "react"
 import { StyleSheet, View, Text, Image } from "react-native"
 import PropTypes from "prop-types"
+import Dimensions from "Dimensions"
+
+const { width } = Dimensions.get("window")
 
 export default class HomeItem extends PureComponent {
   static propTypes = {
@@ -15,6 +18,7 @@ export default class HomeItem extends PureComponent {
           <Text style={ styles.headerText }>美女在这里_8888</Text>
           <Text style={ styles.track }>追踪</Text>
         </View>
+        <Image source={ require("../../resource/image/photo-1.png") } resizeMode="contain" style={ styles.photo } />
         <View style={ styles.operationContainer }>
           <View style={ styles.operation }>
             <Image source={ require("./img/like.png") } resizeMode="contain" style={ styles.icon } />
@@ -49,6 +53,10 @@ const styles = StyleSheet.create({
   track: {
     fontSize: 9,
     color: "#6A6AFF",
+  },
+  photo: {
+    width: width,
+    height: 505
   },
   operationContainer: {
     flexDirection: "row",

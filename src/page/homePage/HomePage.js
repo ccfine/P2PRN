@@ -1,7 +1,8 @@
 import React, { Component } from "react"
-import { StyleSheet, ImageBackground, Image, View, Text, Animated } from "react-native"
+import { StyleSheet, ImageBackground, Image, View, Text, Animated, TouchableHighlight, Modal } from "react-native"
 import ScrollableTabView from "react-native-scrollable-tab-view"
 import TabBar from "react-native-underline-tabbar"
+import Dimensions from "Dimensions"
 import { Tab } from "../../component/tab/Tab.js"
 import Home from "../../container/home/Home.js"
 import PopularRecommend from "../../container/popularRecommend/PopolarRecommend.js"
@@ -10,7 +11,18 @@ import PopularPicture from "../../container/popularPicture/PopularPicture.js"
 import Favorite from "../../container/favorite/Favorite.js"
 import ShareP2P from "../../container/shareP2P/ShareP2P.js"
 
+const { width } = Dimensions.get("window")
+
 export default class HomePage extends Component {
+  constructor () {
+    super()
+    this.state = {
+      modalVisible: false,
+      markVisible: true
+    }
+    this.handleToggle = this.handleToggle.bind(this)
+  }
+
   _scrollX = new Animated.Value(0)
   interpolators = Array.from({ length: 6 }, (_, i) => i).map(idx => ({
     backgroundColor: this._scrollX.interpolate({
@@ -20,10 +32,22 @@ export default class HomePage extends Component {
     })
   }))
 
+  handleToggle () {
+    this.setState({
+      modalVisible: !this.state.modalVisible,
+      markVisible: !this.state.markVisible
+    })
+  }
+
   render () {
     return (
       <View style={ styles.container }>
-        <ImageBackground source={ require("./img/bg.png") } style={ styles.bgImage } />
+        <Modal animationType={ "slide" } transparent={ true } visible={ this.state.modalVisible } onRequestClose={ () => {} }>
+          <View style={ styles.modalContainer }>
+            <Text onPress={ this.handleToggle }>wode dipan</Text>
+          </View>
+        </Modal>
+        <ImageBackground source={ require("./img/bg.png") } resizeMode="cover" style={ styles.bgImage } />
         <View style={ styles.header }>
           <Image source={ require("./img/fold.png") } style={ styles.fold } />
           <Image source={ require("./img/title.png") } resizeMode="contain" style={ styles.title } />
@@ -47,7 +71,11 @@ export default class HomePage extends Component {
           <Favorite tabLabel={{ label: "猜你喜欢" }} />
           <ShareP2P tabLabel={{ label: "P2P分享" }} />
         </ScrollableTabView>
-        <Image source={ require("./img/mark.png") } style={ styles.mark } />
+        { this.state.markVisible? (
+          <TouchableHighlight underlayColor="#ffffff" activeOpacity={ 0.8 } onPress={ this.handleToggle } style={ styles.markContainer }>
+            <Image source={ require("./img/mark.png") } style={ styles.mark } />
+          </TouchableHighlight>
+        ): null }
       </View>
     )
   }
@@ -58,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   bgImage: {
-    width: 375,
+    width: width,
     height: 92,
     position: "absolute",
     top: 0,
@@ -83,11 +111,19 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17
   },
+  markContainer: {
+    position: "absolute",
+    right: 22,
+    bottom: 22,
+    borderRadius: 35 
+  },
   mark: {
    width: 66,
    height: 66,
-   position: "absolute",
-   right: 22,
-   bottom: 22 
-  }
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "#000",
+    opacity: 0.8
+  } 
 })

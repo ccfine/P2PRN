@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StyleSheet, ImageBackground, Image, View, Text, Animated, TouchableHighlight, Modal } from "react-native"
+import { StyleSheet, ImageBackground, Image, View, Text, Animated, Modal, TouchableOpacity } from "react-native"
 import ScrollableTabView from "react-native-scrollable-tab-view"
 import TabBar from "react-native-underline-tabbar"
 import Dimensions from "Dimensions"
@@ -21,6 +21,7 @@ export default class HomePage extends Component {
       markVisible: true
     }
     this.handleToggle = this.handleToggle.bind(this)
+    this.handleSwitchMovie = this.handleSwitchMovie.bind(this)
   }
 
   _scrollX = new Animated.Value(0)
@@ -39,12 +40,34 @@ export default class HomePage extends Component {
     })
   }
 
+  handleSwitchMovie () {
+    this.props.navigation.navigate("MovieHomePage")
+  }
+
   render () {
     return (
       <View style={ styles.container }>
-        <Modal animationType={ "slide" } transparent={ true } visible={ this.state.modalVisible } onRequestClose={ () => {} }>
+        <Modal animationType={ "fade" } transparent={ true } visible={ this.state.modalVisible } onRequestClose={ () => {} }>
           <View style={ styles.modalContainer }>
-            <Text onPress={ this.handleToggle }>wode dipan</Text>
+            <View style={ styles.horContanier }>
+              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer }>
+                <Image source={ require("./img/music.png") } resizeMode="cover" style={ styles.media } />
+                <Text style={ styles.mediaText }>音乐</Text>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={ 0.5 } onPress={ this.handleToggle }>
+                <Image source={ require("./img/close.png") } style={ styles.close } />
+              </TouchableOpacity>
+            </View>
+            <View style={ styles.verContainer }>
+              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer } onPress={ this.handleSwitchMovie }>
+                <Image source={ require("./img/video.png") } resizeMode="cover" style={ styles.media } />
+                <Text style={ styles.mediaText }>小视频</Text>
+              </TouchableOpacity>  
+              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer }>
+                <Image source={ require("./img/album.png") } resizeMode="cover" style={ styles.media } />
+                <Text style={ styles.mediaText }>图集</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
         <ImageBackground source={ require("./img/bg.png") } resizeMode="cover" style={ styles.bgImage } />
@@ -72,9 +95,9 @@ export default class HomePage extends Component {
           <ShareP2P tabLabel={{ label: "P2P分享" }} />
         </ScrollableTabView>
         { this.state.markVisible? (
-          <TouchableHighlight underlayColor="#ffffff" activeOpacity={ 0.8 } onPress={ this.handleToggle } style={ styles.markContainer }>
+          <TouchableOpacity activeOpacity={ 0.3 } onPress={ this.handleToggle } style={ styles.markContainer }>
             <Image source={ require("./img/mark.png") } style={ styles.mark } />
-          </TouchableHighlight>
+          </TouchableOpacity>
         ): null }
       </View>
     )
@@ -114,8 +137,7 @@ const styles = StyleSheet.create({
   markContainer: {
     position: "absolute",
     right: 22,
-    bottom: 22,
-    borderRadius: 35 
+    bottom: 22
   },
   mark: {
    width: 66,
@@ -125,5 +147,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
     opacity: 0.8
-  } 
+  },
+  horContanier: {
+    width: 180,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    position: "absolute",
+    right: 22,
+    bottom: 100
+  },
+  verContainer: {
+    height: 210,
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "absolute",
+    right: 85,
+    bottom: 40
+  }, 
+  mediaContainer: {
+    height: 80,
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  media: {
+    width: 60,
+    height: 60
+  },
+  mediaText: {
+    color: "#fff"
+  },
+  close: {
+    width: 66,
+    height: 66
+  }
 })

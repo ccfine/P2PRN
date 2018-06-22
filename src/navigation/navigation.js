@@ -1,12 +1,21 @@
 import { StackNavigator } from "react-navigation"
 import WelcomePage from "../page/welcomePage/WelcomePage.js" 
 import HomePage from "../page/homePage/HomePage.js"
-import MovieHomePage from "../page/movieHomePage/MovieHomePage.js"
+import ShareHomePage from "../page/shareHomePage/ShareHomePage.js"
+import ShareContentPage from "../page/shareContentPage/ShareContentPage.js"
 
-const MoviePage = StackNavigator(
+const SharePage = StackNavigator(
   {
-    MovieHomePage: {
-      screen: MovieHomePage
+    ShareHomePage: {
+      screen: ShareHomePage
+    },
+    ShareContentPage: {
+      screen: ShareContentPage
+    }
+  },
+  {
+    navigationOptions: {
+      header: null
     }
   }
 )
@@ -19,14 +28,14 @@ export const Navigator = StackNavigator(
     HomePage: {
       screen: HomePage
     },
-    MoviePage: {
-      screen: MoviePage
+    SharePage: {
+      screen: SharePage
     }
   },
   {
     initialRouteName: "WelcomePage",
     navigationOptions: {
-      header: null 
+      header: null
     }
   }
 )

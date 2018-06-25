@@ -1,19 +1,22 @@
 import React from "react"
 import { TouchableOpacity, Animated } from "react-native"
+import Dimensions from "Dimensions"
+
+const { scale } = Dimensions.get("window")
 
 export const Tab = props => {
   const style = {
-    marginHorizontal: 5
+    marginHorizontal: 10
   }
   const container = {
-    paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: 10,
+    paddingHorizontal: 30 / scale,
+    paddingVertical: 6 / scale,
+    borderRadius: 55 / scale,
     backgroundColor: props.styles.backgroundColor
   }
   const text = {
     color: "#fff",
-    fontSize: 10
+    fontSize: 40 / scale
   }
 
   return (

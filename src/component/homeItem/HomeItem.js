@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native"
 import PropTypes from "prop-types"
 import Dimensions from "Dimensions"
 
-const { width } = Dimensions.get("window")
+const { width,scale } = Dimensions.get("window")
 
 export default class HomeItem extends PureComponent {
   static propTypes = {
@@ -39,46 +39,50 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
-    paddingVertical: 5
+    paddingVertical: 10 / scale
   },
   avatar: {
-    width: 29,
-    height: 31.5
+    width: 58 / scale,
+    height: 63 / scale
   },
   headerText: {
-    fontSize: 9,
+    fontSize: 36 / scale,
     color: "#000",
     marginHorizontal: 5
   },
   track: {
-    fontSize: 9,
+    fontSize: 36 / scale,
     color: "#6A6AFF",
   },
   photo: {
     width: width,
-    height: 505
+    height: 1010 / scale
   },
   operationContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 5
+    paddingTop: 20 / scale,
+    paddingRight: 15,
+    paddingBottom: 10 / scale,
+    paddingLeft: 10
   },
   operation: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: 75
+    width: 230 / scale
   },
   icon: {
-    width: 12,
-    height: 12
+    width: 35 / scale,
+    height: 35 / scale
   },
   description: {
-    fontSize: 9,
+    fontSize: 36 / scale,
     color: "#000",
-    lineHeight: 11,
-    paddingLeft: 5,
-    paddingVertical: 5
+    lineHeight: 38 / scale,
+    paddingTop: 10 / scale,
+    paddingHorizontal: 10,
+    paddingBottom: 10 / scale
   }
 })

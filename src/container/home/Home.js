@@ -1,8 +1,11 @@
 import React, { Component } from "react"
 import { StyleSheet, View, FlatList } from "react-native"
 import { connect } from "react-redux"
+import Dimensions from "Dimensions"
 import { getHomeList } from "../../redux/action/home.action.js"
 import HomeItem from "../../component/homeItem/HomeItem.js"
+
+const { scale } = Dimensions.get("window")
 
 @connect(
   state => state.home,
@@ -53,10 +56,10 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10
+    marginTop: 11 / scale
   },
   separator: {
-    height: 15,
+    height: 50 / scale,
     backgroundColor: "#8b00eb"
   }
 })

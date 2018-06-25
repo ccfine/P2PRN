@@ -11,7 +11,7 @@ import PopularPicture from "../../container/popularPicture/PopularPicture.js"
 import Favorite from "../../container/favorite/Favorite.js"
 import ShareP2P from "../../container/shareP2P/ShareP2P.js"
 
-const { width } = Dimensions.get("window")
+const { width, scale } = Dimensions.get("window")
 
 export default class HomePage extends Component {
   constructor () {
@@ -40,9 +40,7 @@ export default class HomePage extends Component {
   }
 
   handleSwitchShare (title) {
-    this.setState({
-      modalVisible: !this.state.modalVisible
-    })
+    this.handleToggle()
     this.props.navigation.navigate("ShareHomePage", {
       title: title
     })
@@ -59,7 +57,7 @@ export default class HomePage extends Component {
                 <Text style={ styles.mediaText }>音乐</Text>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={ 0.5 } onPress={ this.handleToggle }>
-                <Image source={ require("./img/close.png") } style={ styles.close } />
+                <Image source={ require("./img/close.png") } resizeMode="cover" style={ styles.close } />
               </TouchableOpacity>
             </View>
             <View style={ styles.verContainer }>
@@ -76,11 +74,11 @@ export default class HomePage extends Component {
         </Modal>
         <ImageBackground source={ require("./img/bg.png") } resizeMode="cover" style={ styles.bgImage } />
         <View style={ styles.header }>
-          <Image source={ require("./img/fold.png") } style={ styles.fold } />
+          <Image source={ require("./img/fold.png") } resizeMode="cover" style={ styles.fold } />
           <Image source={ require("./img/title.png") } resizeMode="contain" style={ styles.title } />
-          <Image source={ require("./img/search.png") } style={ styles.search } />
+          <Image source={ require("./img/search.png") } resizeMode="cover" style={ styles.search } />
         </View>
-        <ScrollableTabView renderTabBar={ () => <TabBar underlineColor="transparent" tabBarStyle={{ borderWidth: 0, marginTop: 15 }}
+        <ScrollableTabView renderTabBar={ () => <TabBar underlineColor="transparent" tabBarStyle={{ borderWidth: 0, marginTop: 8 / scale }}
                                                         renderTab={ (tab, page, isTabActive, onPressHandler, onTabLayout) => 
                                                                       <Tab key={ page } tab={ tab } page={ page } isTabActive={ isTabActive }
                                                                            onPressHandler={ onPressHandler } onTabLayout={ onTabLayout } 
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     width: width,
-    height: 92,
+    height: 184 / scale,
     position: "absolute",
     top: 0,
     left: 0
@@ -123,29 +121,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: 20 / scale,
     paddingHorizontal: 10
   },
   fold: {
-    width: 21.5,
-    height: 19
+    width: 43 / scale,
+    height: 38 / scale
   },
   title: {
-    width: 150,
-    height: 35 
+    width: 635 / scale,
+    height: 30 
   },
   search: {
-    width: 17,
-    height: 17
+    width: 34 / scale,
+    height: 34 / scale
   },
   markContainer: {
     position: "absolute",
-    right: 22,
-    bottom: 22
+    right: 60 / scale,
+    bottom: 50 / scale
   },
   mark: {
-   width: 66,
-   height: 66,
+   width: 132 / scale,
+   height: 132 / scale,
   },
   modalContainer: {
     flex: 1,
@@ -153,36 +151,36 @@ const styles = StyleSheet.create({
     opacity: 0.8
   },
   horContanier: {
-    width: 180,
+    width: 400 / scale,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
     position: "absolute",
-    right: 22,
-    bottom: 100
+    right: 60 / scale,
+    bottom: 600 / scale
   },
   verContainer: {
-    height: 210,
+    height: 500 / scale,
     justifyContent: "space-between",
     alignItems: "center",
     position: "absolute",
-    right: 85,
-    bottom: 40
+    right: 210/ scale,
+    bottom: 440 / scale
   }, 
   mediaContainer: {
-    height: 80,
+    height: 180 / scale,
     justifyContent: "space-between",
     alignItems: "center"
   },
   media: {
-    width: 60,
-    height: 60
+    width: 120 / scale,
+    height: 120 / scale,
   },
   mediaText: {
     color: "#fff"
   },
   close: {
-    width: 66,
-    height: 66
+    width: 132 / scale,
+    height: 132 / scale,
   }
 })

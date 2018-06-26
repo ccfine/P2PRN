@@ -15,7 +15,7 @@ export default class NavigationBar extends PureComponent {
     return (
       <View style={ styles.container }>    
         <TouchableOpacity style={ styles.backContainer } onPress={ this.props.goBack }>  
-          <Image source={ require("./img/back.png") } style={ styles.back } />
+          <Image source={ require("./img/back.png") } resizeMode="contain" style={ styles.back } />
           <Text style={ styles.backTitle }>{ this.props.title }</Text>
         </TouchableOpacity>
       </View>
@@ -25,21 +25,20 @@ export default class NavigationBar extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40 / scale,
-    paddingHorizontal: 15
+    paddingLeft: 15
   },
   backContainer: {
-    width: 180 / scale,
+    width: 200 / scale,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
   },
   back: {
-    width: 43 / scale,
-    height: 36 / scale
+    width: 65 / scale,
+    height: 65 / scale
   },
   backTitle: {
-    fontSize: 50 / scale,
+    fontSize: 55 / scale,
     color: "#fff"
   }
 })

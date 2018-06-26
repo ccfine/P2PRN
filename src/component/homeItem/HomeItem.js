@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from "react-native"
 import PropTypes from "prop-types"
 import Dimensions from "Dimensions"
 
-const { width,scale } = Dimensions.get("window")
+const { width, scale } = Dimensions.get("window")
 
 export default class HomeItem extends PureComponent {
   static propTypes = {

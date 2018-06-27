@@ -1,7 +1,7 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import SplashScreen from "react-native-splash-screen"
 
-export default class WelcomePage extends Component {
+export default class WelcomePage extends PureComponent {
   componentDidMount () {
     this.timer = setTimeout(() => {
       SplashScreen.hide()

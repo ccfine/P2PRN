@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { StyleSheet, ImageBackground, View, Text, TextInput } from "react-native"
+import { RadioGroup, RadioButton } from "react-native-flexi-radio-button"
 import Dimensions from "Dimensions"
 import NavigationBar from "../../component/navigationBar/NavigationBar.js"
+import MultiButton from "../../component/multiButton/MultiButton.js"
 
 const { scale } = Dimensions.get("window")
 
@@ -11,13 +13,21 @@ export default class ShareHomePage extends Component {
     this.state = {
       title: "",
       actor: "",
-      type: "动作片"
+      type: "动作片",
+      display: "横屏"
     }
     this.handleGoBack = this.handleGoBack.bind(this)
+    this.handleGoForward = this.handleGoForward.bind(this)
   }
 
   handleGoBack () {
     this.props.navigation.navigate("HomePage")
+  }
+
+  handleGoForward () {
+    this.props.navigation.navigate("ShareContentPage", {
+      title: this.props.navigation.state.params.title
+    })
   }
 
   handleChangeText (key, value) {
@@ -57,6 +67,22 @@ export default class ShareHomePage extends Component {
               ) ) }
             </View>
           </View>
+          <View style={ styles.displayContainer }>
+            <Text style={ styles.titleText }>内容显示</Text>
+            <RadioGroup thickness={ 1 } size={ 60 / scale } selectedIndex={ 0 } color="#712FCA"
+                        onSelect={ (index, value) => this.handleChangeText("display", value)} style={ styles.radioContainer }
+            >
+              <RadioButton value={ "横屏" } color="#fff" style={ styles.radio }>
+                <Text style={ this.state.display === "横屏"? styles.contentText: styles.unselectedText }>横屏</Text>
+              </RadioButton>
+              <RadioButton value={ "竖屏" } color="#fff" style={ styles.radio }>
+                <Text style={ this.state.display === "竖屏"? styles.contentText: styles.unselectedText }>竖屏</Text>
+              </RadioButton>
+            </RadioGroup>
+          </View>
+          <View style={ styles.nextContainer }>
+            <MultiButton title="下一步" goForward={ this.handleGoForward } />
+          </View>
         </View>
       </ImageBackground>
     )
@@ -66,7 +92,7 @@ export default class ShareHomePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40 / scale,
+    paddingTop: 40 / scale
   },
   titleText: {
     color: "#fff",
@@ -105,5 +131,28 @@ const styles = StyleSheet.create({
   typeText: {
     color: "#fff",
     fontSize: 40 / scale
+  },
+  displayContainer: {
+    marginTop: 100 / scale,
+    marginBottom: 400 / scale
+  },
+  radioContainer: {
+    flexDirection: "row",
+    marginTop: 10
+  },
+  radio: {
+    padding: 0,
+    marginRight: 60 / scale,
+    width: 170 / scale,
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  unselectedText: {
+    color: "#7B73D0",
+    fontSize: 45 / scale
+  },
+  nextContainer: {
+    alignSelf: "flex-end",
+    alignItems: "center"
   }
 })

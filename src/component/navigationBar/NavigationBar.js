@@ -7,7 +7,7 @@ const { scale } = Dimensions.get("window")
 
 export default class NavigationBar extends PureComponent {
   static propTypes = {
-   title: PropTypes.string.isRequired ,
+   title: PropTypes.string.isRequired,
    goBack: PropTypes.func.isRequired
   }
 

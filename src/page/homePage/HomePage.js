@@ -52,7 +52,7 @@ export default class HomePage extends Component {
         <Modal animationType={ "fade" } transparent={ true } visible={ this.state.modalVisible } onRequestClose={ () => {} }>
           <View style={ styles.modalContainer }>
             <View style={ styles.horContanier }>
-              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer } onPress={ () => this.handleSwitchShare("音乐") }>
+              <TouchableOpacity activeOpacity={ 0.5 } onPress={ () => this.handleSwitchShare("音乐") } style={ styles.mediaContainer }>
                 <Image source={ require("./img/music.png") } resizeMode="cover" style={ styles.media } />
                 <Text style={ styles.mediaText }>音乐</Text>
               </TouchableOpacity>
@@ -61,11 +61,11 @@ export default class HomePage extends Component {
               </TouchableOpacity>
             </View>
             <View style={ styles.verContainer }>
-              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer } onPress={ () => this.handleSwitchShare("电影") }>
+              <TouchableOpacity activeOpacity={ 0.5 } onPress={ () => this.handleSwitchShare("电影") } style={ styles.mediaContainer }>
                 <Image source={ require("./img/video.png") } resizeMode="cover" style={ styles.media } />
                 <Text style={ styles.mediaText }>小视频</Text>
               </TouchableOpacity>  
-              <TouchableOpacity activeOpacity={ 0.5 } style={ styles.mediaContainer } onPress={ () => this.handleSwitchShare("相册") }>
+              <TouchableOpacity activeOpacity={ 0.5 } onPress={ () => this.handleSwitchShare("相册") } style={ styles.mediaContainer }>
                 <Image source={ require("./img/album.png") } resizeMode="cover" style={ styles.media } />
                 <Text style={ styles.mediaText }>图集</Text>
               </TouchableOpacity>

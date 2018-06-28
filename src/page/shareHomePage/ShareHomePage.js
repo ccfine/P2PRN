@@ -61,9 +61,11 @@ export default class ShareHomePage extends Component {
               <TextInput value={ this.state.type } editable={ false } underlineColorAndroid="transparent" style={ styles.contentText } />
             </View>
             <View style={ styles.typeList }>
-              <Text style={ styles.typeText }>热门分类：</Text>
+              <Text style={ styles.typeTitle }>热门分类：</Text>
               { type.map( item => (
-                <Text key={ item } style={ styles.typeText }>{ item }</Text>
+                <Text key={ item } onPress={ () => this.handleChangeText("type", item) }
+                      style={ this.state.type === item? styles.typeText: styles.unselectedType }
+                >{ item }</Text>
               ) ) }
             </View>
           </View>
@@ -73,10 +75,10 @@ export default class ShareHomePage extends Component {
                         onSelect={ (index, value) => this.handleChangeText("display", value)} style={ styles.radioContainer }
             >
               <RadioButton value={ "横屏" } color="#fff" style={ styles.radio }>
-                <Text style={ this.state.display === "横屏"? styles.contentText: styles.unselectedText }>横屏</Text>
+                <Text style={ this.state.display === "横屏"? styles.contentText: styles.unselectedRadio }>横屏</Text>
               </RadioButton>
               <RadioButton value={ "竖屏" } color="#fff" style={ styles.radio }>
-                <Text style={ this.state.display === "竖屏"? styles.contentText: styles.unselectedText }>竖屏</Text>
+                <Text style={ this.state.display === "竖屏"? styles.contentText: styles.unselectedRadio }>竖屏</Text>
               </RadioButton>
             </RadioGroup>
           </View>
@@ -128,13 +130,31 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  typeText: {
+  typeTitle: {
     color: "#fff",
     fontSize: 40 / scale
   },
+  typeText: {
+    color: "#fff",
+    fontSize: 40 / scale,
+    paddingVertical: 10 / scale,
+    paddingHorizontal: 20 / scale,
+    marginBottom: 10 / scale,
+    backgroundColor: "#121595",
+    borderRadius: 60 / scale
+  },
+  unselectedType: {
+    color: "#fff",
+    fontSize: 40 / scale,
+    paddingVertical: 10 / scale,
+    paddingHorizontal: 20 / scale,
+    marginBottom: 10 / scale,
+    backgroundColor: "transparent",
+    borderRadius: 60 / scale
+  },
   displayContainer: {
     marginTop: 100 / scale,
-    marginBottom: 400 / scale
+    marginBottom: 200 / scale
   },
   radioContainer: {
     flexDirection: "row",
@@ -147,7 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
-  unselectedText: {
+  unselectedRadio: {
     color: "#7B73D0",
     fontSize: 45 / scale
   },

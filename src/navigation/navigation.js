@@ -3,6 +3,7 @@ import WelcomePage from "../page/welcomePage/WelcomePage.js"
 import HomePage from "../page/homePage/HomePage.js"
 import ShareHomePage from "../page/shareHomePage/ShareHomePage.js"
 import ShareContentPage from "../page/shareContentPage/ShareContentPage.js"
+import ShareAddPage from "../page/shareAddPage/ShareAddPage.js"
 
 const SharePage = StackNavigator(
   {
@@ -11,6 +12,9 @@ const SharePage = StackNavigator(
     },
     ShareContentPage: {
       screen: ShareContentPage
+    },
+    ShareAddPage: {
+      screen: ShareAddPage
     }
   },
   {

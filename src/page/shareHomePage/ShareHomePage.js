@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
     fontSize: 45 / scale
   },
   nextContainer: {
-    alignSelf: "flex-end",
-    alignItems: "center"
+    alignSelf: "flex-end"
   }
 })
